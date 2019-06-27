@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 20
+
+//funciones
+int menu();
+int cargar (int vector[],int inicio, int n);
+void ordenamiento (int vector[], int n);
+void listar(int vector[], int n);
+
+
+int main()
+{
+    int vector[tam],opcion,TAM=0;
+  do{
+    opcion = menu();
+    switch (opcion)
+    {
+       case 1:
+          TAM = cargar(vector,TAM,tam);
+          break;
+    case 2:
+        ordenamiento(vector, TAM);
+        listar(vector,TAM);
+        break;
+    case 3:
+        printf("\n\nGracias por usar el programa");
+        system("pause");
+        break;
+    default:
+        printf("\n\n Opcion erronea");
+        system("pause");
+        break;
+    }
+  }while (opcion < 3);
+  return 0;
+}
+
+  // funciones
+int menu()
+{
+    int opcion;
+    printf("\n Vectores");
+    printf("\n\n\n1- cargar");
+    printf("\n2- ordenar");
+    printf("\n3-salir");
+    printf("\nopcion ---> ");
+    scanf("%d", &opcion);
+    return opcion;
+}
+
+int cargar(int vector[],int inicio,int fin)
+{   //carga de datos
+    char sino;
+    int i=inicio;
+    do
+    {
+        printf("\nVector[%d]= ",i);
+        scanf("%d",&vector[i]);
+        printf("\nDesea cargar mas datos (s/n)= ");
+        fflush(stdin);
+        scanf("%c",&sino);
+        i++;
+    }while(sino == 's'&& i < tam);
+    return i;
+}
+
+void ordenamiento (int vector[], int fin)
+{    //ordenamiento
+
+    int i, aux,j;
+    for(i=0;i<fin-1;i++)
+    {
+        for(j=0;j<fin-1-i;j++)
+        {
+            if(vector[j]>vector[j+1])
+            {
+                aux=vector[j];
+                vector[j]=vector[j+1];
+                vector[j+1]=aux;
+            }
+        }
+    }
+}
+
+void listar(int vector[], int fin)
+{
+    //muestro el vector
+    int i;
+    for(i=0;i<fin;i++)
+    {
+        printf("\nvector[%d] = %d\n",i,vector[i]);
+    }
+
+
+}
